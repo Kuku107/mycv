@@ -51,6 +51,7 @@ main {
     border-radius: 6px;
     transition: all 0.3s ease;
     display: block;
+    user-select: none;
 }
 
 .tag:hover {
@@ -232,6 +233,7 @@ input[type="checkbox"]:checked + .tag::before {
     font-weight: 700;
     transition: all 0.3s ease;
     padding: 0 0.75rem;
+    user-select: none;
 }
 
 .page:hover {
