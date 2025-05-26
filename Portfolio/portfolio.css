@@ -1,3 +1,6 @@
+main {
+    background: #FDF0E9;
+}
 #hero {
     padding: 4rem 0 5.4375rem 0;
     text-align: center;
@@ -20,10 +23,10 @@
 
 .project_tags {
     margin: 2rem auto 3rem;
-    max-width: 574px;
+    max-width: 650px;
 }
 
-.project_tags ul {
+.tags-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,21 +34,57 @@
     flex-wrap: wrap;
 }
 
-.project_tags ul li {
+.project_tags input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+
+.tag {
+    position: relative;
     color: var(--Text_Dark_Gray);
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
+    padding: 0.5rem 1rem;
     text-align: center;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    display: block;
 }
 
-.project_tags ul li:hover,
-.project_tags ul li:focus,
-.project_tags ul li.active {
+.tag:hover {
+    color: var(--Text_Dark);
+    background-color: rgba(255, 142, 122, 0.7);
+}
+
+input[type="checkbox"]:checked + .tag {
     color: var(--Text_Dark);
     background-color: #FF8E7A;
-    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(239, 109, 88, 0.25);
+    transform: translateY(-2px);
+    font-weight: 600;
 }
 
+.tag::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #FF8E7A;
+    border-radius: 6px;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: -1;
+}
+
+input[type="checkbox"]:checked + .tag::before {
+    transform: scale(1);
+    opacity: 1;
+}
 
 .project_cards {
     display: grid;
@@ -56,6 +95,19 @@
     margin: 0 auto;
 }
 
+.project_cards a {
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    display: block;
+}
+
+.project_cards a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(57, 20, 0, 0.1);
+}
+
 .project_card {
     height: 416px;
     -webkit-background-size: cover;
@@ -64,13 +116,33 @@
     background-size: cover;
     background-position: top left;
     background-repeat: no-repeat;
-
     padding: 3.1875rem 1.75rem;
     display: flex;
     flex-direction: column;
     gap: 1.4rem;
     justify-content: flex-end;
     border-radius: 6px;
+    position: relative;
+    transition: all 0.5s ease;
+    overflow: hidden;
+}
+
+.project_card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0.7;
+    transition: opacity 0.5s ease, height 0.5s ease;
+    z-index: 1;
+}
+
+.project_cards a:hover .project_card::before {
+    height: 60%;
+    opacity: 0.9;
 }
 
 .project_tag {
@@ -79,10 +151,28 @@
     border-radius: 19px;
     background: #FFF;
     width: fit-content;
+    position: relative;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.project_cards a:hover .project_tag {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 .project_title {
     color: var(--Text_Light);
+    position: relative;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.5s ease, letter-spacing 0.5s ease;
+}
+
+.project_cards a:hover .project_title {
+    transform: translateY(-5px);
+    letter-spacing: 0.5px;
 }
 
 #project_1 {
@@ -109,36 +199,67 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
     margin: 3rem auto 7rem;
 }
 
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pagination-container input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    margin: 0;
+}
+
 .page {
-    width: 48px;
-    height: 48px;
+    width: auto;
+    min-width: 40px;
+    height: 40px;
     border-radius: 6px;
-    box-shadow: 0px 3px 9px 0px rgba(57, 20, 0, 0.08);
     display: flex;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-
     color: #391400;
     text-align: center;
     font-size: 0.875rem;
-    font-weight: 900;
-    text-transform: uppercase;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    padding: 0 0.75rem;
 }
 
-.page.active,
-.page:hover,
-.page:focus{
+.page:hover {
+    color: #FFF;
+    background-color: rgba(239, 109, 88, 0.8);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(239, 109, 88, 0.25);
+}
+
+input[type="radio"]:checked + .page {
     background: #EF6D58;
     color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 8px rgba(239, 109, 88, 0.25);
+}
+
+.page:active {
+    transform: translateY(0);
+    box-shadow: 0px 2px 4px rgba(239, 109, 88, 0.2);
+    transition: all 0.1s ease;
 }
 
 #cta {
     margin-bottom: 1rem;
+}
+
+#cta img {
+    object-fit: contain;
 }
 
 .content_wrapper {
@@ -156,14 +277,48 @@
     margin-bottom: 1rem;
 }
 
-#cta img {
-    object-fit: contain;
-}
-
 .content p {
     max-width: 470px;
     color: var(--Text_Light_Gray);
     margin-bottom: 1.3125rem;
+}
+
+.content .btn--secondary {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 12px rgba(239, 109, 88, 0.2);
+}
+
+.content .btn--secondary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(239, 109, 88, 0.1), rgba(239, 109, 88, 0.3), rgba(239, 109, 88, 0.1));
+    transition: all 0.6s ease;
+    z-index: 1;
+}
+
+.content .btn--secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(239, 109, 88, 0.3);
+    border-color: #EF6D58;
+    color: #391400;
+    letter-spacing: 0.5px;
+}
+
+.content .btn--secondary:hover::before {
+    left: 100%;
+}
+
+.content .btn--secondary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(239, 109, 88, 0.2);
+    transition: all 0.1s ease;
 }
 
 @media (min-width: 1024px) {
@@ -196,7 +351,7 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .project_cards .project_card:nth-child(1) {
+    .project_cards a:nth-child(1) {
         grid-column: 1 / -1;
     }
 
@@ -206,7 +361,6 @@
 
     .content_wrapper {
         flex-direction: row;
-
         justify-content: space-between;
     }
 
