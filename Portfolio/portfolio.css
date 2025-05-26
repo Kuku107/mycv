@@ -39,6 +39,7 @@
 }
 
 .project_tags ul li:hover,
+.project_tags ul li:focus,
 .project_tags ul li.active {
     color: var(--Text_Dark);
     background-color: #FF8E7A;
@@ -104,7 +105,66 @@
     background-image: url("../images/handp.png");
 }
 
+.pages {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin: 3rem auto 7rem;
+}
 
+.page {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    box-shadow: 0px 3px 9px 0px rgba(57, 20, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    color: #391400;
+    text-align: center;
+    font-size: 0.875rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.page.active,
+.page:hover,
+.page:focus{
+    background: #EF6D58;
+    color: #FFF;
+}
+
+#cta {
+    margin-bottom: 1rem;
+}
+
+.content_wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 6px;
+    background: #EF6D58;
+    padding: 2rem 1.75rem 3rem;
+    gap: 37px;
+}
+
+.content h3 {
+    max-width: 368px;
+    color: var(--Text_Light);
+    margin-bottom: 1rem;
+}
+
+#cta img {
+    object-fit: contain;
+}
+
+.content p {
+    max-width: 470px;
+    color: var(--Text_Light_Gray);
+    margin-bottom: 1.3125rem;
+}
 
 @media (min-width: 1024px) {
     #hero {
@@ -138,5 +198,34 @@
 
     .project_cards .project_card:nth-child(1) {
         grid-column: 1 / -1;
+    }
+
+    .pages {
+        margin-top: 5rem;
+    }
+
+    .content_wrapper {
+        flex-direction: row;
+
+        justify-content: space-between;
+    }
+
+    .content h3 {
+        margin-bottom: 1.75rem;
+
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 4rem;
+        letter-spacing: -0.0625rem;
+    }
+
+    .content p {
+        margin-bottom: 2.125rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .content_wrapper {
+        padding: 6rem 6.25rem 5rem;
     }
 }
