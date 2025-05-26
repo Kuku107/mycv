@@ -1,0 +1,111 @@
+#hero {
+    padding: 4rem 0 5.4375rem 0;
+    text-align: center;
+    background-color: #28293E;
+}
+
+#hero h1 {
+    color: var(--Text_Light);
+    margin-bottom: 0.75rem;
+
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 4rem;
+    letter-spacing: -0.0625rem;
+}
+
+#hero p {
+    color: var(--Text_Light_Gray);
+}
+
+/*.filter-mobile {*/
+/*    position: relative;*/
+/*    width: 100%;*/
+/*    margin: 2rem auto 3rem;*/
+/*    display: none;*/
+/*}*/
+
+/*.filter-mobile select {*/
+/*    width: 100%;*/
+/*    padding: 0.5rem 1rem;*/
+/*    border-radius: 6px;*/
+/*    border: 1px solid #F3D1BF;*/
+/*    background: #FFF;*/
+/*    cursor: pointer;*/
+/*    appearance: none;*/
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    color: var(--Text_Dark_Gray);*/
+/*    font-size: 1rem;*/
+/*    font-weight: 400;*/
+/*    line-height: 2rem;*/
+/*}*/
+
+/*.filter-mobile::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    width: 10px;*/
+/*    height: 6px;*/
+/*    background-image: url("../images/Triangle.svg");*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: center;*/
+/*    top: 50%;*/
+/*    right: 15px;*/
+/*    transform: translateY(-50%);*/
+/*    pointer-events: none;*/
+/*}*/
+
+.filter-desktop {
+    margin: 4.25rem auto;
+    max-width: 574px;
+}
+
+.filter-desktop ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-desktop ul li {
+    color: var(--Text_Dark_Gray);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+}
+
+.filter-desktop ul li:hover,
+.filter-desktop ul li.active {
+    color: var(--Text_Dark);
+    background-color: #FF8E7A;
+    border-radius: 6px;
+}
+
+@media (min-width: 680px) {
+    /*.filter-mobile {*/
+    /*    display: none;*/
+    /*}*/
+
+    /*.filter-desktop {*/
+    /*    display: block;*/
+    /*}*/
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        padding: 5.25rem 0 4.125rem 0;
+    }
+
+    #hero h1 {
+        font-size: 4.5rem;
+        font-weight: 800;
+        line-height: 5rem;
+        letter-spacing: -0.125rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #hero p {
+        max-width: 570px;
+        margin: 0 auto;
+    }
+}
