@@ -1,0 +1,286 @@
+main {
+    background-color: #FDF0E9;
+}
+
+#hero {
+    padding: 4rem 0 5.4375rem 0;
+    text-align: center;
+    background-color: #28293E;
+}
+
+#hero h1 {
+    color: var(--Text_Light);
+    margin-bottom: 0.75rem;
+
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 4rem;
+    letter-spacing: -0.0625rem;
+}
+
+#hero p {
+    color: var(--Text_Light_Gray);
+}
+
+#git form {
+    padding: 3.5625rem 1.75rem 3rem;
+    max-width: 470px;
+    margin: 4rem auto;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+}
+
+#git form h4 {
+    margin-bottom: 1.4375rem;
+}
+
+#git form input,
+#git form select {
+    margin-bottom: 1rem;
+}
+
+#git form textarea {
+    margin-bottom: 2rem;
+    resize: none;
+}
+
+#git iframe {
+    width: 100%;
+    height: 719px;
+}
+
+#card_info {
+    margin: 2rem auto 6.75rem;
+}
+
+.card_container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 6px;
+    border: 1px solid #F3D1BF;
+    overflow: hidden;
+}
+
+.card_item {
+    padding: 2rem 0 2.3rem 1.75rem;
+    border-right: 1px solid #F3D1BF;
+}
+
+.card_container .card_item:last-of-type {
+    border: none;
+}
+
+.card_title {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.625rem;
+}
+
+.img-wrapper {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #EF6D58;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-wrapper img {
+    width: 24px;
+    height: 18px;
+}
+
+h5 {
+    color: var(--Text_Dark_Accent);
+}
+
+.card_item > p {
+    color: var(--Text_Dark);
+}
+
+#faq {
+    margin-bottom: 6.9rem;
+}
+
+#faq .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2.25rem;
+}
+
+#faq .content h5,
+#faq .content h3 {
+    margin-bottom: 1rem;
+}
+
+#faq h3 {
+    color: var(--Text_Dark);
+    max-width: 371px;
+}
+
+#faq .container .content > p:first-of-type {
+    margin-bottom: 2rem;
+    color: var(--Text_Dark_Gray);
+    max-width: 470px;
+}
+
+#faq .container .content > p:last-of-type {
+    color: var(--Text_Dark);
+}
+
+/* FAQ Question Styles */
+.question_container {
+    width: 100%;
+    border: 1px solid #F3D1BF;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.question_item {
+    border-bottom: 1px solid #F3D1BF;
+}
+
+.question_container .question_item:last-of-type {
+    border: none;
+}
+
+.question_toggle {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+}
+
+.question_title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 1.5rem;
+    cursor: pointer;
+    color: var(--Text_Dark);
+    transition: all 0.3s ease;
+}
+
+.question_title span {
+    flex: 1;
+    font-size: 1.3rem;
+    font-weight: 700;
+    line-height: 2rem;
+}
+
+.question_icon {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.question_content {
+    max-height: 0;
+    padding: 0 1.5rem;
+    overflow: hidden;
+    color: var(--Text_Dark_Gray);
+    transition: all 0.3s ease;
+}
+
+/* Animation when question is expanded */
+.question_item:has(.question_toggle:checked) {
+    background-color: #FFF;
+    box-shadow: 0 32px 64px 0 rgba(57, 20, 0, 0.04);
+}
+
+.question_toggle:checked + .question_title .question_icon {
+    transform: rotate(180deg);
+}
+
+.question_toggle:checked ~ .question_content {
+    max-height: 500px;
+    padding: 1.5rem;
+}
+
+/* Make the entire question item clickable */
+.question_item {
+    position: relative;
+}
+
+@media (min-width: 900px) {
+    #git > .container > form {
+        position: absolute;
+        left: 80px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    #git {
+        position: relative;
+        margin-bottom: 5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    #hero {
+        padding: 5.25rem 0 4.125rem 0;
+    }
+
+    #hero h1 {
+        font-size: 4.5rem;
+        font-weight: 800;
+        line-height: 5rem;
+        letter-spacing: -0.125rem;
+        margin-bottom: 1.5rem;
+    }
+
+    #hero p {
+        max-width: 570px;
+        margin: 0 auto;
+    }
+
+    #git form {
+        padding: 3.5625rem 3rem 3rem;
+    }
+
+    #card_info {
+        margin: 5rem auto 7.75rem;
+    }
+
+    .card_container {
+        flex-direction: row;
+    }
+
+    .card_item {
+        flex: 1;
+        padding: 1rem;
+    }
+
+    .question_container {
+        max-width: 770px;
+    }
+
+    .question_title {
+        padding: 2rem;
+    }
+
+    .question_content {
+        padding: 0 2rem;
+    }
+
+    .question_toggle:checked ~ .question_content {
+        padding: 1.75rem;
+    }
+
+    #faq .container {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 1440px) {
+    .card_item {
+        padding: 2rem 0 2.375rem 3rem ;
+    }
+
+    #faq .container {
+        gap: 8rem;
+    }
+}

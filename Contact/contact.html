@@ -10,16 +10,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="../includes/includes.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="./contact.css">
 </head>
 <body>
     <header></header>
     
     <main>
-        <div class="container">
-            <h1>Contact</h1>
-            <p class="txt_big">This is the contact page content. Replace this with your actual contact page content.</p>
-        </div>
+        <section id="hero">
+            <div class="container">
+                <h1>Contact</h1>
+                <p class="txt">
+                    Agency provides a full service range including technical skills, design, business understanding.
+                </p>
+            </div>
+        </section>
+
+        <section id="git">
+            <div class="container">
+                <form action="#">
+                    <h4>Get In Touch</h4>
+                    <input class="form-control form-input" aria-label="Email" type="email" id="email" name="email" placeholder="Email" required>
+                    <select class="form-control form-input" aria-label="Subject" name="subject" id="subject" required>
+                        <option value="subject" disabled>Select subject</option>
+                        <option value="general">General</option>
+                        <option value="project">Project</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="freelance">Freelance</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <textarea required class="form-control" aria-label="Message" name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
+                    <button class="btn btn--primary" type="submit">Submit now</button>
+                </form>
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14897.196018022096!2d105.75873959540515!3d21.020718840022194!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x313454af5398a549%3A0xbef9c5aad993ba1a!2zTXkgRGluaCAxLCBOYW0gVOG7qyBMacOqbSwgSGFub2ksIFZpZXRuYW0!5e0!3m2!1sen!2s!4v1748320352783!5m2!1sen!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
+
+        <section id="card_info">
+            <div class="container">
+                <div class="card_container">
+                    <div class="card_item">
+                        <div class="card_title">
+                            <div class="img-wrapper">
+                                <img src="../images/phone.svg" alt="phone icon">
+                            </div>
+                            <h5>Phone</h5>
+                        </div>
+                        <p class="txt_big">0824122387</p>
+                    </div>
+                    <div class="card_item">
+                        <div class="card_title">
+                            <div class="img-wrapper">
+                                <img src="../images/mail.svg" alt="mail icon">
+                            </div>
+                            <h5>EMail</h5>
+                        </div>
+                        <p class="txt_big">leduc1078@gmail.com</p>
+                    </div>
+                    <div class="card_item">
+                        <div class="card_title">
+                            <div class="img-wrapper">
+                                <img src="../images/direction.svg" alt="direction icon">
+                            </div>
+                            <h5>Address</h5>
+                        </div>
+                        <p class="txt_big">Nam Tu Liem, Ha Noi, Viet Nam</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="faq">
+            <div class="container">
+                <div class="content">
+                    <h5>FAQ</h5>
+                    <h3>Frequently Asked Questions</h3>
+                    <p class="txt">
+                        A digital agency is a business you hire to outsource your digital marketing efforts,
+                        instead of handling in-house.
+                    </p>
+                    <p class="txt">Ask us anything</p>
+                </div>
+                <div class="question_container">
+                    <div class="question_item">
+                        <input type="checkbox" id="question1" class="question_toggle">
+                        <label for="question1" class="question_title">
+                            <span>How much time does it take to develop a website?</span>
+                            <img src="../images/down.svg" alt="Expand" class="question_icon">
+                        </label>
+                        <div class="question_content">
+                            <p class="txt">The time required to develop a website varies depending on complexity, features, and design requirements. A simple portfolio website might take 2-4 weeks, while a complex e-commerce site could take 2-3 months or more. We'll provide a detailed timeline during our initial consultation based on your specific needs.</p>
+                        </div>
+                    </div>
+                    <div class="question_item">
+                        <input type="checkbox" id="question2" class="question_toggle">
+                        <label for="question2" class="question_title">
+                            <span>What is your design process?</span>
+                            <img src="../images/down.svg" alt="Expand" class="question_icon">
+                        </label>
+                        <div class="question_content">
+                            <p class="txt">Our design process begins with understanding your requirements, followed by research and wireframing. We then create mockups for your approval before proceeding to development. Throughout the process, we maintain open communication and incorporate your feedback to ensure the final product meets your expectations.</p>
+                        </div>
+                    </div>
+                    <div class="question_item">
+                        <input type="checkbox" id="question3" class="question_toggle">
+                        <label for="question3" class="question_title">
+                            <span>Do you provide website maintenance services?</span>
+                            <img src="../images/down.svg" alt="Expand" class="question_icon">
+                        </label>
+                        <div class="question_content">
+                            <p class="txt">Yes, we offer comprehensive website maintenance services including regular updates, security patches, content updates, and performance optimization. We provide different maintenance packages tailored to your specific needs, ensuring your website remains secure, up-to-date, and performs optimally.</p>
+                        </div>
+                    </div>
+                    <div class="question_item">
+                        <input type="checkbox" id="question4" class="question_toggle">
+                        <label for="question4" class="question_title">
+                            <span>What technologies do you use for development?</span>
+                            <img src="../images/down.svg" alt="Expand" class="question_icon">
+                        </label>
+                        <div class="question_content">
+                            <p class="txt">We use modern, industry-standard technologies for development, including HTML5, CSS3, JavaScript, and various frameworks depending on project requirements. For backend development, we work with technologies like Node.js, PHP, Python, and databases such as MySQL and MongoDB. Our technology choices are always aligned with your project's specific needs and long-term goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
     
     <footer></footer>
