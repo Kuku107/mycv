@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Settings - My CV</title>
+    <link rel="stylesheet" href="profile-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="profile.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="../Home/home.html">
+                <span class="logo-text">DevPort</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <div class="avatar-container">
+                <div class="avatar" id="avatar-btn">
+                    <!-- Placeholder avatar image - replace with actual user avatar -->
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/60" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">Tyler Johnson</div>
+                            <div class="user-email">tyler.johnson@gmail.com</div>
+                        </div>
+                    </div>
+                    <ul class="dropdown-items">
+                        <li>
+                            <a href="../Profile/profile.html">
+                                <span class="icon">⚙️</span>
+                                <span>Profile settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../Projects/projects.html">
+                                <span class="icon">📋</span>
+                                <span>Projects settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#portfolio">
+                                <span class="icon">📁</span>
+                                <span>My Portfolio</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="logout">
+                                <span class="icon logout-icon">🚪</span>
+                                <span>Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="content">
+        <div class="profile-container">
+            <h1 class="section-title">Profile settings</h1>
+            
+            <form id="profile-form">
+                <div class="profile-card">
+                    <div class="profile-image-section">
+                        <div class="profile-image-container">
+                            <div class="profile-image" id="profile-image-preview">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <p class="image-requirements">Image must be 256 × 256px - max 2MB</p>
+                            <div class="image-actions">
+                                <button type="button" class="btn btn-upload" id="upload-profile-image">
+                                    <i class="fas fa-upload"></i> Upload Profile Image
+                                </button>
+                                <button type="button" class="btn btn-delete" id="delete-image">
+                                    <i class="fas fa-trash"></i> Delete Image
+                                </button>
+                                <input type="file" id="file-input" accept="image/*" hidden>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-info-section">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="example@gmail.com" value="">
+                            </div>
+                            <div class="form-group">
+                                <label for="job-title">Job title</label>
+                                <input type="text" id="job-title" name="job-title" placeholder="Enter your job title">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Enter your name">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Address</label>
+                                <input type="text" id="address" name="address" placeholder="Enter your address">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" name="bio" placeholder="Enter a short introduction..."></textarea>
+                        </div>
+                        
+                        <h3 class="section-subtitle">Social Media</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="facebook-url"><i class="fab fa-facebook"></i> Facebook URL</label>
+                                <input type="url" id="facebook-url" name="facebook-url" placeholder="https://facebook.com/username">
+                            </div>
+                            <div class="form-group">
+                                <label for="twitter-url"><i class="fab fa-twitter"></i> Twitter URL</label>
+                                <input type="url" id="twitter-url" name="twitter-url" placeholder="https://twitter.com/username">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="instagram-url"><i class="fab fa-instagram"></i> Instagram URL</label>
+                            <input type="url" id="instagram-url" name="instagram-url" placeholder="https://instagram.com/username">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-save">
+                        <i class="fas fa-save"></i> Save
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</body>
+</html>

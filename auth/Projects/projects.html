@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Settings - My CV</title>
+    <link rel="stylesheet" href="projects-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="projects.js"></script>
+</head>
+<body>
+    <header class="main-header">
+        <div class="logo">
+            <a href="../Home/home.html">
+                <span class="logo-text">DevPort</span>
+            </a>
+        </div>
+        <div class="user-menu">
+            <div class="avatar-container">
+                <div class="avatar" id="avatar-btn">
+                    <!-- Placeholder avatar image - replace with actual user avatar -->
+                    <img src="https://via.placeholder.com/40" alt="User Avatar">
+                </div>
+                <div class="dropdown-menu">
+                    <div class="dropdown-header">
+                        <div class="user-avatar">
+                            <img src="https://via.placeholder.com/60" alt="User Avatar">
+                        </div>
+                        <div class="user-info">
+                            <div class="user-name">Tyler Johnson</div>
+                            <div class="user-email">tyler.johnson@gmail.com</div>
+                        </div>
+                    </div>
+                    <ul class="dropdown-items">
+                        <li>
+                            <a href="../Profile/profile.html">
+                                <span class="icon">⚙️</span>
+                                <span>Profile settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="../Projects/projects.html">
+                                <span class="icon">📋</span>
+                                <span>Projects settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#portfolio">
+                                <span class="icon">📁</span>
+                                <span>My Portfolio</span>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" id="logout">
+                                <span class="icon logout-icon">🚪</span>
+                                <span>Log out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <main class="content">
+        <div class="projects-container">
+            <h1 class="section-title">Projects settings</h1>
+            
+            <!-- Add Project Button -->
+            <button class="add-project-btn" id="add-project-btn">
+                <i class="fas fa-plus"></i> Add project
+            </button>
+            
+            <!-- Project Form (Hidden by default) -->
+            <div class="project-form-container" id="project-form-container">
+                <div class="project-form">
+                    <div class="project-image-section">
+                        <div class="project-image-container">
+                            <div class="project-image" id="project-image-preview">
+                                <i class="fas fa-image"></i>
+                            </div>
+                            <p class="image-requirements">Image must be PNG or JPEG - max 2MB</p>
+                            <div class="image-actions">
+                                <button type="button" class="btn btn-upload" id="upload-project-image">
+                                    <i class="fas fa-upload"></i> Upload Image
+                                </button>
+                                <button type="button" class="btn btn-delete" id="delete-project-image">
+                                    <i class="fas fa-trash"></i> Delete Image
+                                </button>
+                                <input type="file" id="project-file-input" accept="image/png, image/jpeg" hidden>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="project-form">
+                        <input type="hidden" id="project-id" value="">
+                        <div class="form-group">
+                            <label for="project-name">Project Name</label>
+                            <input type="text" id="project-name" name="project-name" placeholder="Enter your project name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="demo-url">Demo URL</label>
+                            <input type="url" id="demo-url" name="demo-url" placeholder="Enter the demo URL">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="repository-url">Repository URL</label>
+                            <input type="url" id="repository-url" name="repository-url" placeholder="Enter the repository URL">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Enter a short description..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-remove" id="remove-project">
+                                <i class="fas fa-trash"></i> Remove
+                            </button>
+                            <div class="action-buttons">
+                                <button type="button" class="btn btn-cancel" id="cancel-add-project">
+                                    <i class="fas fa-times"></i> Cancel
+                                </button>
+                                <button type="submit" class="btn btn-add">
+                                    <i class="fas fa-plus"></i> <span id="submit-btn-text">Add</span>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Projects List -->
+            <div class="projects-list" id="projects-list">
+                <!-- Sample Project Items (Will be dynamically generated in real app) -->
+                <div class="project-item" data-id="1">
+                    <div class="project-content">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x200/4361ee/ffffff" alt="Music Player">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">Music Player</h3>
+                            <p class="project-description">I was Junior Front-End Developers who are responsible for implementing visual and interactive elements that users see and interact with in a web application.</p>
+                            <button class="btn btn-edit" data-id="1">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Edit form will be inserted here when edit button is clicked -->
+                    <div class="project-edit-form-container" id="edit-form-1"></div>
+                </div>
+                
+                <div class="project-item" data-id="2">
+                    <div class="project-content">
+                        <div class="project-thumbnail">
+                            <img src="https://via.placeholder.com/120x200/e63946/ffffff" alt="Movie Search App">
+                        </div>
+                        <div class="project-details">
+                            <h3 class="project-title">Movie Search App</h3>
+                            <p class="project-description">This challenge is a great to practice working with external API. The challenge is to create a simple movie search to speech application that requires you to work with advanced JavaScript functionalities.</p>
+                            <button class="btn btn-edit" data-id="2">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Edit form will be inserted here when edit button is clicked -->
+                    <div class="project-edit-form-container" id="edit-form-2"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
