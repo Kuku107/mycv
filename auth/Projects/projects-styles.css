@@ -276,6 +276,10 @@ body {
     gap: 10px;
 }
 
+.required {
+    color: red;
+}
+
 @media (min-width: 500px) {
     .image-actions {
         flex-direction: row;
@@ -304,6 +308,65 @@ body {
     border-radius: 4px;
     font-size: 14px;
     transition: border-color 0.3s;
+}
+
+/* Custom Select Styling */
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%234361ee' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-color: white;
+    cursor: pointer;
+}
+
+.form-group select:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+.form-group select option {
+    padding: 10px;
+}
+
+.form-group select option:hover {
+    background-color: #f0f2f5;
+}
+
+/* Tag styling */
+.tag-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 500;
+    color: white;
+    margin-right: 5px;
+}
+
+.tag-badge.design {
+    background-color: #4361ee;
+}
+
+.tag-badge.branding {
+    background-color: #3a0ca3;
+}
+
+.tag-badge.illustration {
+    background-color: #7209b7;
+}
+
+.tag-badge.motion {
+    background-color: #f72585;
 }
 
 .form-group input:focus,

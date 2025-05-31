@@ -54,15 +54,62 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Handle form submission
-    document.getElementById('profile-form').addEventListener('submit', function(e) {
+    const profileForm = document.getElementById('profile-form');
+    const errorMessageContainer = document.getElementById('profile-form-error');
+    const nameInput = document.getElementById('name');
+    
+    profileForm.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Here you would typically send the form data to a server
-        // For demonstration, we'll just show a success message
-        alert('Profile updated successfully!');
+        // Reset error message
+        errorMessageContainer.style.display = 'none';
+        errorMessageContainer.textContent = '';
         
-        // Redirect back to home page or stay on profile page
-        // window.location.href = '../Home/home.html';
+        // Validate required fields
+        if (!nameInput.value.trim()) {
+            errorMessageContainer.textContent = 'Please fill out all required fields.';
+            errorMessageContainer.style.display = 'block';
+            return;
+        }
+        
+        // Get form data
+        const profileData = {
+            name: nameInput.value,
+            jobTitle: document.getElementById('job-title').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            bio: document.getElementById('bio').value,
+            facebook: document.getElementById('facebook-url').value,
+            twitter: document.getElementById('twitter-url').value,
+            instagram: document.getElementById('instagram-url').value,
+            profileImage: imagePreview.classList.contains('has-image') ? 
+                imagePreview.style.backgroundImage.replace(/url\(['"](\S+)['"]\)/, '$1') : 
+                null
+        };
+        
+        try {
+            // Here you would typically send the form data to a server
+            // For demonstration, we'll just show a success message
+            
+            /*
+            // Example of handling server errors:
+            if (serverResponse.error) {
+                errorMessageContainer.textContent = serverResponse.error;
+                errorMessageContainer.style.display = 'block';
+                return;
+            }
+            */
+            
+            console.log('Profile updated successfully:', profileData);
+            alert('Profile updated successfully!');
+            
+            // Redirect back to home page or stay on profile page
+            // window.location.href = '../Home/home.html';
+        } catch (error) {
+            // Display error message from server
+            errorMessageContainer.textContent = error.message || 'An error occurred. Please try again.';
+            errorMessageContainer.style.display = 'block';
+        }
     });
     
     // Navigate back to home

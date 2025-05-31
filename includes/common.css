@@ -467,7 +467,7 @@ footer hr {
         padding: 2.5rem 3.125rem;
         opacity: 0; /* Start transparent */
         transition: right 0.4s ease, opacity 0.3s ease; /* Smooth transition */
-        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
     }
 
     .nav {
@@ -569,4 +569,20 @@ footer hr {
         gap: 3rem;
         justify-content: center;
     }
+}
+
+/* Required field indicator */
+.required {
+    color: #e74c3c;
+    margin-left: 3px;
+}
+
+/* Error message styling */
+.error-message {
+    color: #e74c3c;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    background-color: rgba(231, 76, 60, 0.1);
+    border-left: 3px solid #e74c3c;
 }

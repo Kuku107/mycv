@@ -1,4 +1,35 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Function to style the tag select field
+    function styleTagSelect() {
+        const tagSelects = document.querySelectorAll('select[name="project-tag"]');
+        
+        tagSelects.forEach(select => {
+            // Add change event listener to update styling when a new option is selected
+            select.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                if (selectedOption.value) {
+                    const color = selectedOption.getAttribute('data-color');
+                    this.style.borderLeft = `4px solid ${color}`;
+                    this.style.paddingLeft = '8px';
+                } else {
+                    this.style.borderLeft = '';
+                    this.style.paddingLeft = '';
+                }
+            });
+            
+            // Style initially if a value is already selected
+            const selectedOption = select.options[select.selectedIndex];
+            if (selectedOption && selectedOption.value) {
+                const color = selectedOption.getAttribute('data-color');
+                select.style.borderLeft = `4px solid ${color}`;
+                select.style.paddingLeft = '8px';
+            }
+        });
+    }
+    
+    // Call the function to style tag selects
+    styleTagSelect();
+    
     // DOM Elements
     const addProjectBtn = document.getElementById('add-project-btn');
     const projectFormContainer = document.getElementById('project-form-container');
@@ -10,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const fileInput = document.getElementById('project-file-input');
     const projectIdInput = document.getElementById('project-id');
     const projectNameInput = document.getElementById('project-name');
+    const projectTagSelect = document.getElementById('project-tag');
     const demoUrlInput = document.getElementById('demo-url');
     const repoUrlInput = document.getElementById('repository-url');
     const descriptionInput = document.getElementById('description');
@@ -17,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const submitBtnText = document.getElementById('submit-btn-text');
     const avatarBtn = document.getElementById('avatar-btn');
     const dropdown = document.querySelector('.dropdown-menu');
+    const errorMessageContainer = document.getElementById('project-form-error');
     
     // Track active edit form
     let activeEditForm = null;
@@ -146,10 +179,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                     
                     <form id="edit-form-${projectId}" class="edit-project-form">
+                        <!-- Error message container -->
+                        <div class="error-message" id="edit-form-error-${projectId}" style="display: none;"></div>
+                        
                         <input type="hidden" id="edit-project-id-${projectId}" value="${projectId}">
                         <div class="form-group">
-                            <label for="edit-project-name-${projectId}">Project Name</label>
-                            <input type="text" id="edit-project-name-${projectId}" name="project-name" value="${project.name}" placeholder="Enter your project name">
+                            <label for="edit-project-name-${projectId}">Project Name <span class="required">*</span></label>
+                            <input type="text" id="edit-project-name-${projectId}" name="project-name" value="${project.name}" placeholder="Enter your project name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="edit-project-tag-${projectId}">Tag <span class="required">*</span></label>
+                            <select id="edit-project-tag-${projectId}" name="project-tag" required>
+                                <option value="" disabled>Select a tag</option>
+                                <option value="DESIGN" ${project.tag === 'DESIGN' ? 'selected' : ''}>Design</option>
+                                <option value="BRANDING" ${project.tag === 'BRANDING' ? 'selected' : ''}>Branding</option>
+                                <option value="ILLUSTRATION" ${project.tag === 'ILLUSTRATION' ? 'selected' : ''}>Illustration</option>
+                                <option value="MOTION" ${project.tag === 'MOTION' ? 'selected' : ''}>Motion</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -208,31 +255,63 @@ document.addEventListener('DOMContentLoaded', function() {
     
     function handleFormSubmit(e) {
         e.preventDefault();
+    
+        // Reset error message
+        errorMessageContainer.style.display = 'none';
+        errorMessageContainer.textContent = '';
         
+        // Validate required fields
+        if (!projectNameInput.value || !projectTagSelect.value) {
+            errorMessageContainer.textContent = 'Please fill out all required fields.';
+            errorMessageContainer.style.display = 'block';
+            return;
+        }
+    
         // Get form data
         const projectId = projectIdInput.value ? parseInt(projectIdInput.value) : null;
         const projectData = {
             name: projectNameInput.value,
+            tag: projectTagSelect.value,
             demoUrl: demoUrlInput.value,
             repoUrl: repoUrlInput.value,
             description: descriptionInput.value,
             image: imagePreview.classList.contains('has-image') ? 
-                   imagePreview.style.backgroundImage.replace(/url\(['"](.+)['"]\)/, '$1') : 
+                   imagePreview.style.backgroundImage.replace(/url\(['"](\S+)['"]\)/, '$1') : 
                    null
         };
-        
+    
         // In a real app, you would send this data to a server
-        // For this demo, we'll just show a success message
+        // For demonstration, we'll simulate a response from the server
+        // This would be replaced with actual API calls
+        try {
+        // Simulate API call
+        // For demo purposes, we'll just pretend it succeeded
+        // In a real app, you would handle responses and errors from your API
+        
+        /* 
+        // Example of handling server errors:
+        if (serverResponse.error) {
+            errorMessageContainer.textContent = serverResponse.error;
+            errorMessageContainer.style.display = 'block';
+            return;
+        }
+        */
+        
         if (projectId) {
-            alert(`Project "${projectData.name}" updated successfully!`);
+            console.log(`Project "${projectData.name}" updated successfully!`);
         } else {
-            alert(`Project "${projectData.name}" added successfully!`);
+            console.log(`Project "${projectData.name}" added successfully!`);
         }
         
         // Hide form
         projectFormContainer.classList.remove('active');
         
         // In a real app, you would refresh the projects list here
+        } catch (error) {
+            // Display error message from server
+            errorMessageContainer.textContent = error.message || 'An error occurred. Please try again.';
+            errorMessageContainer.style.display = 'block';
+        }
     }
     
     function handleImageUpload() {
@@ -263,7 +342,7 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.readAsDataURL(file);
         }
     }
-    
+
     function handleImageDelete() {
         imagePreview.style.backgroundImage = 'none';
         imagePreview.classList.remove('has-image');
@@ -280,6 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const fileInput = document.getElementById(`edit-file-input-${projectId}`);
         const removeBtn = document.getElementById(`edit-remove-project-${projectId}`);
         const cancelBtn = document.getElementById(`edit-cancel-${projectId}`);
+        const errorMessageContainer = document.getElementById(`edit-form-error-${projectId}`);
         
         // Handle image upload
         uploadBtn.addEventListener('click', function() {
@@ -324,24 +404,47 @@ document.addEventListener('DOMContentLoaded', function() {
         editForm.addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Reset error message if it exists
+            if (errorMessageContainer) {
+                errorMessageContainer.style.display = 'none';
+                errorMessageContainer.textContent = '';
+            }
+            
             // Get form data
+            const projectName = document.getElementById(`edit-project-name-${projectId}`).value;
+            const projectTag = document.getElementById(`edit-project-tag-${projectId}`).value;
+            const demoUrl = document.getElementById(`edit-demo-url-${projectId}`).value;
+            const repoUrl = document.getElementById(`edit-repository-url-${projectId}`).value;
+            const description = document.getElementById(`edit-description-${projectId}`).value;
+            
+            // Validate required fields
+            if (!projectName || !projectTag) {
+                if (errorMessageContainer) {
+                    errorMessageContainer.textContent = 'Please fill out all required fields.';
+                    errorMessageContainer.style.display = 'block';
+                } else {
+                    alert('Please fill out all required fields.');
+                }
+                return;
+            }
+            
+            // Find index of project in array
+            const index = projects.findIndex(p => p.id === projectId);
+            
+            // Update project data
             const updatedProject = {
-                id: projectId,
-                name: document.getElementById(`edit-project-name-${projectId}`).value,
-                demoUrl: document.getElementById(`edit-demo-url-${projectId}`).value,
-                repoUrl: document.getElementById(`edit-repository-url-${projectId}`).value,
-                description: document.getElementById(`edit-description-${projectId}`).value,
+                ...project,
+                name: projectName,
+                tag: projectTag,
+                demoUrl: demoUrl,
+                repoUrl: repoUrl,
+                description: description,
                 image: imagePreview.classList.contains('has-image') ? 
-                       imagePreview.style.backgroundImage.replace(/url\(['"](.*)['"]\)/, '$1') : 
+                       imagePreview.style.backgroundImage.replace(/url\(['"](\S+)['"]\)/, '$1') : 
                        null
             };
             
-            // In a real app, you would send this data to a server
-            // For this demo, we'll just show a success message
-            alert(`Project "${updatedProject.name}" updated successfully!`);
-            
-            // Update the project in our sample data
-            const index = projects.findIndex(p => p.id === projectId);
+            // Update the project in the array
             if (index !== -1) {
                 projects[index] = updatedProject;
             }

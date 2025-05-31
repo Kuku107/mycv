@@ -95,9 +95,21 @@
                     
                     <form id="project-form">
                         <input type="hidden" id="project-id" value="">
+                        
                         <div class="form-group">
-                            <label for="project-name">Project Name</label>
-                            <input type="text" id="project-name" name="project-name" placeholder="Enter your project name">
+                            <label for="project-name">Project Name <span class="required">*</span></label>
+                            <input type="text" id="project-name" name="project-name" placeholder="Enter your project name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-tag">Tag <span class="required">*</span></label>
+                            <select id="project-tag" name="project-tag" required>
+                                <option value="" disabled selected>Select a tag</option>
+                                <option value="DESIGN" data-color="#4361ee">Design</option>
+                                <option value="BRANDING" data-color="#3a0ca3">Branding</option>
+                                <option value="ILLUSTRATION" data-color="#7209b7">Illustration</option>
+                                <option value="MOTION" data-color="#f72585">Motion</option>
+                            </select>
                         </div>
                         
                         <div class="form-group">
@@ -114,6 +126,9 @@
                             <label for="description">Description</label>
                             <textarea id="description" name="description" placeholder="Enter a short description..."></textarea>
                         </div>
+                        
+                        <!-- Error message container -->
+                        <div class="error-message" id="project-form-error" style="display: none;"></div>
                         
                         <div class="form-actions">
                             <button type="button" class="btn btn-remove" id="remove-project">

@@ -129,6 +129,10 @@ body {
     text-decoration: underline;
 }
 
+.required {
+    color: red;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .container {
