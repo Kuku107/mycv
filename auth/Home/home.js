@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Load user profile data from localStorage
+    UserProfile.updateUserMenuFromStorage();
     // Toggle dropdown menu when avatar is clicked
     const avatar = document.querySelector('.avatar');
     const dropdown = document.querySelector('.dropdown-menu');
@@ -15,8 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Handle logout functionality
     document.getElementById('logout').addEventListener('click', function() {
-        // Here you would typically handle logout logic
-        alert('Logging out...');
-        window.location.href = '../Login/login.html';
+        // Call logout API to clear cookies - sử dụng GET /auth/logout
+        fetch('http://localhost:8080/auth/logout', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(() => {
+            // Xóa dữ liệu người dùng khỏi localStorage
+            localStorage.removeItem('userProfile');
+            
+            // Redirect to login page regardless of response
+            window.location.href = '../Login/login.html';
+        })
+        .catch(error => {
+            console.error('Logout error:', error);
+            // Xóa dữ liệu người dùng khỏi localStorage ngay cả khi có lỗi
+            localStorage.removeItem('userProfile');
+            
+            // Still redirect to login page even if there's an error
+            window.location.href = '../Login/login.html';
+        });
     });
 });

@@ -1,3 +1,6 @@
+// Import the API utility for token refresh
+import { fetchWithTokenRefresh } from '../../utils/api.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.querySelector('.login-form');
     const emailInput = document.getElementById('email');
@@ -24,27 +27,83 @@ document.addEventListener('DOMContentLoaded', function() {
             password: passwordInput.value
         };
         
-        try {
-            // Here you would typically send the login data to a server
-            // For demonstration, we'll just show a success message
+        // Show loading state
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Logging in...';
+        
+        // Call the API to login the user
+        fetch('http://localhost:8080/auth/get-token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include', // This ensures cookies are received from the request
+            body: JSON.stringify(loginData)
+        })
+        .then(response => {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
             
-            /*
-            // Example of handling authentication errors:
-            if (serverResponse.error) {
-                errorMessageContainer.textContent = serverResponse.error;
-                errorMessageContainer.style.display = 'block';
-                return;
+            if (!response.ok) {
+                // If response is not 2xx, parse the error message
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || 'Login failed');
+                });
             }
-            */
+            return response.json();
+        })
+        .then(data => {
+            // Login successful
+            console.log('Login successful:', data);
             
-            console.log('Login attempt:', loginData.email);
+            // No need to store tokens as they're in cookies now
+            
+            // Fetch user profile after successful login
+            return fetchWithTokenRefresh('http://localhost:8080/user/profile', {
+                method: 'GET',
+                credentials: 'include'
+            });
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || 'Failed to fetch profile');
+                });
+            }
+            return response.json();
+        })
+        .then(profileData => {
+            // Log to debug the API response
+            console.log('Raw profile data from API:', profileData);
+            console.log('Profile data email:', profileData.data?.email);
+            
+            // Store profile data in localStorage for use across all pages
+            if (profileData && profileData.data) {
+                // Lưu profile data vào localStorage cho các trang sử dụng
+                const profileToSave = {
+                    name: profileData.data.name || '',
+                    email: profileData.data.email || '',
+                    profileUrl: profileData.data.profileUrl || '',
+                    jobTitle: profileData.data.jobTitle || ''
+                };
+                console.log('Profile data being saved to localStorage:', profileToSave);
+                localStorage.setItem('userProfile', JSON.stringify(profileToSave));
+            }
+            
             alert('Login successful! Redirecting to home page...');
             window.location.href = '../Home/home.html';
-        } catch (error) {
+        })
+        .catch(error => {
             // Display error message
             errorMessageContainer.textContent = error.message || 'Login failed. Please check your credentials.';
             errorMessageContainer.style.display = 'block';
-        }
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            console.error('Login error:', error);
+        });
     }
     
     form.addEventListener('submit', handleLogin);

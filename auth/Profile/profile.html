@@ -6,7 +6,8 @@
     <title>Profile Settings - My CV</title>
     <link rel="stylesheet" href="profile-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="profile.js"></script>
+    <script src="../../utils/userProfile.js"></script>
+    <script src="profile.js" type="module"></script>
 </head>
 <body>
     <header class="main-header">
@@ -120,17 +121,17 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="facebook-url"><i class="fab fa-facebook"></i> Facebook URL</label>
-                                <input type="url" id="facebook-url" name="facebook-url" placeholder="https://facebook.com/username">
+                                <input type="text" id="facebook-url" name="facebook-url" placeholder="https://facebook.com/username">
                             </div>
                             <div class="form-group">
                                 <label for="twitter-url"><i class="fab fa-twitter"></i> Twitter URL</label>
-                                <input type="url" id="twitter-url" name="twitter-url" placeholder="https://twitter.com/username">
+                                <input type="text" id="twitter-url" name="twitter-url" placeholder="https://twitter.com/username">
                             </div>
                         </div>
                         
                         <div class="form-group">
                             <label for="instagram-url"><i class="fab fa-instagram"></i> Instagram URL</label>
-                            <input type="url" id="instagram-url" name="instagram-url" placeholder="https://instagram.com/username">
+                            <input type="text" id="instagram-url" name="instagram-url" placeholder="https://instagram.com/username">
                         </div>
                     </div>
                 </div>

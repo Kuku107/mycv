@@ -50,27 +50,47 @@ document.addEventListener('DOMContentLoaded', function() {
             password: passwordInput.value
         };
         
-        try {
-            // Here you would typically send the signup data to a server
-            // For demonstration, we'll just show a success message
+        // Show loading state
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.textContent;
+        submitButton.disabled = true;
+        submitButton.textContent = 'Signing up...';
+        
+        // Call the API to register the user
+        fetch('http://localhost:8080/user/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(signupData)
+        })
+        .then(response => {
+            // Reset button state
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
             
-            /*
-            // Example of handling server errors:
-            if (serverResponse.error) {
-                errorMessageContainer.textContent = serverResponse.error;
-                errorMessageContainer.style.display = 'block';
-                return;
+            if (!response.ok) {
+                // If response is not 2xx, parse the error message
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || 'Registration failed');
+                });
             }
-            */
-            
-            console.log('Registration attempt:', signupData.email);
+            return response.json();
+        })
+        .then(data => {
+            // Registration successful
+            console.log('Registration successful:', data);
             alert('Registration successful! Redirecting to login page...');
             window.location.href = '../Login/login.html';
-        } catch (error) {
+        })
+        .catch(error => {
             // Display error message
             errorMessageContainer.textContent = error.message || 'Registration failed. Please try again.';
             errorMessageContainer.style.display = 'block';
-        }
+            submitButton.textContent = originalButtonText;
+            submitButton.disabled = false;
+            console.error('Registration error:', error);
+        });
     }
     
     form.addEventListener('submit', handleSignUp);

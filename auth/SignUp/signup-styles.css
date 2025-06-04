@@ -133,6 +133,15 @@ body {
     color: red;
 }
 
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+    padding: 8px;
+    background-color: rgba(255, 0, 0, 0.05);
+    border-radius: 4px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 480px) {
     .container {
