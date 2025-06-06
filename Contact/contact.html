@@ -13,7 +13,39 @@
     <link rel="stylesheet" href="./contact.css">
 </head>
 <body>
-    <header></header>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../Home/home.html">
+                    <div class="logo-container">
+                        <img src="../images/Polygon.svg" alt="logo" class="logo-polygon">
+                        <img src="../images/Polygon-inside.svg" alt="logo" class="logo-polygon-inside">
+                    </div>
+                    <h4>Personal</h4>
+                </a>
+            </div>
+            <button class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu">
+                <div class="nav">
+                    <ul>
+                        <li><a class="txt" id="header_about_page" href="../About/about.html">About</a></li>
+                        <li><a class="txt" id="header_project_page" href="../Projects/projects.html">Projects</a></li>
+                        <li><a class="txt" href="#">Pricing</a></li>
+                        <li><a class="txt" href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <a href="../Contact/contact.html" id="header_contact_page">
+                        Contact
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
     
     <main>
         <section id="hero">
@@ -31,12 +63,12 @@
                     <h4>Get In Touch</h4>
                     <input class="form-control form-input" aria-label="Email" type="email" id="email" name="email" placeholder="Email" required>
                     <select class="form-control form-input" aria-label="Subject" name="subject" id="subject" required>
-                        <option value="subject" disabled>Select subject</option>
-                        <option value="general">General</option>
-                        <option value="project">Project</option>
-                        <option value="feedback">Feedback</option>
-                        <option value="freelance">Freelance</option>
-                        <option value="other">Other</option>
+                        <option value="Subject" disabled>Select subject</option>
+                        <option value="General" selected>General</option>
+                        <option value="Project">Project</option>
+                        <option value="Feedback">Feedback</option>
+                        <option value="Freelance">Freelance</option>
+                        <option value="Other">Other</option>
                     </select>
                     <textarea required class="form-control" aria-label="Message" name="message" id="message" cols="30" rows="5" placeholder="Message"></textarea>
                     <button class="btn btn--primary" type="submit">Submit now</button>
@@ -136,6 +168,51 @@
         </section>
     </main>
     
-    <footer></footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="../Home/home.html">
+                        <h4>Personal</h4>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Menu</h5>
+                        <ul>
+                            <li><a class="txt" id="footer_about_page" href="../About/about.html">About</a></li>
+                            <li><a class="txt" id="footer_project_page" href="../Projects/projects.html">Projects</a></li>
+                            <li><a class="txt" href="#">Blog</a></li>
+                            <li><a class="txt" id="footer_contact_page" href="../Contact/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h5>Service</h5>
+                        <ul>
+                            <li><a class="txt" href="#">Design</a></li>
+                            <li><a class="txt" href="#">Development</a></li>
+                            <li><a class="txt" href="#">Marketing</a></li>
+                            <li><a class="txt" href="#">See more</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" id="footer_facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="footer_twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="footer_instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p class="txt">Copyright 2022 Laaqiq. All Rights Reserved.</p>
+                <div class="terms">
+                    <a class="txt" href="#"><p>Terms of Use</p></a>
+                    <a class="txt" href="#"><p>Privacy Policy</p></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="contact.js"></script>
 </body>
 </html>

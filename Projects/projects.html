@@ -13,7 +13,39 @@
     <link rel="stylesheet" href="./projects.css">
 </head>
 <body>
-    <header></header>
+    <header>
+            <div class="container">
+            <div class="logo">
+                <a href="../Home/home.html">
+                    <div class="logo-container">
+                        <img src="../images/Polygon.svg" alt="logo" class="logo-polygon">
+                        <img src="../images/Polygon-inside.svg" alt="logo" class="logo-polygon-inside">
+                    </div>
+                    <h4>Personal</h4>
+                </a>
+            </div>
+            <button class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu">
+                <div class="nav">
+                    <ul>
+                        <li><a class="txt" id="header_about_page" href="../About/about.html">About</a></li>
+                        <li><a class="txt" id="header_project_page" href="../Projects/projects.html">Projects</a></li>
+                        <li><a class="txt" href="#">Pricing</a></li>
+                        <li><a class="txt" href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <a href="../Contact/contact.html" id="header_contact_page">
+                        Contact
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
     <main>
         <section id="hero">
             <div class="container">
@@ -52,30 +84,7 @@
                             <h3 class="project_title">KeyBoard</h3>
                         </div>
                     </a>
-                    <a href="#">
-                        <div class="project_card" id="project_2">
-                            <p class="project_tag txt">Design</p>
-                            <h3 class="project_title">SOFA</h3>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="project_card" id="project_3">
-                            <p class="project_tag txt">Branding</p>
-                            <h3 class="project_title">DDDone</h3>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="project_card" id="project_4">
-                            <p class="project_tag txt">Illustration</p>
-                            <h3 class="project_title">Work Media</h3>
-                        </div>
-                    </a>
-                    <a href="#">
-                        <div class="project_card" id="project_5">
-                            <p class="project_tag txt">Branding</p>
-                            <h3 class="project_title">HandP</h3>
-                        </div>
-                    </a> -->
+                    -->
                 </div>
                 
                 <div class="pages">
@@ -115,8 +124,51 @@
             </div>
         </section>
     </main>
-    <footer></footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="../Home/home.html">
+                        <h4>Personal</h4>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Menu</h5>
+                        <ul>
+                            <li><a class="txt" id="footer_about_page" href="../About/about.html">About</a></li>
+                            <li><a class="txt" id="footer_project_page" href="../Projects/projects.html">Projects</a></li>
+                            <li><a class="txt" href="#">Blog</a></li>
+                            <li><a class="txt" id="footer_contact_page" href="../Contact/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h5>Service</h5>
+                        <ul>
+                            <li><a class="txt" href="#">Design</a></li>
+                            <li><a class="txt" href="#">Development</a></li>
+                            <li><a class="txt" href="#">Marketing</a></li>
+                            <li><a class="txt" href="#">See more</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" id="footer_facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="footer_twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="footer_instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p class="txt">Copyright 2022 Laaqiq. All Rights Reserved.</p>
+                <div class="terms">
+                    <a class="txt" href="#"><p>Terms of Use</p></a>
+                    <a class="txt" href="#"><p>Privacy Policy</p></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    <script src="./projects.js" type="module"></script>
+    <script src="./projects.js"></script>
 </body>
 </html>

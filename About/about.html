@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Personal</title>
     <link rel="stylesheet" href="../includes/common.css">
+    <link rel="stylesheet" href="about.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -12,15 +13,122 @@
     <script src="../includes/includes.js"></script>
 </head>
 <body>
-    <header></header>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="../Home/home.html">
+                    <div class="logo-container">
+                        <img src="../images/Polygon.svg" alt="logo" class="logo-polygon">
+                        <img src="../images/Polygon-inside.svg" alt="logo" class="logo-polygon-inside">
+                    </div>
+                    <h4>Personal</h4>
+                </a>
+            </div>
+            <button class="navbar-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <nav class="nav-menu">
+                <div class="nav">
+                    <ul>
+                        <li><a class="txt" id="header_about_page" href="../About/about.html">About</a></li>
+                        <li><a class="txt" id="header_project_page" href="../Projects/projects.html">Projects</a></li>
+                        <li><a class="txt" href="#">Pricing</a></li>
+                        <li><a class="txt" href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="contact">
+                    <a href="../Contact/contact.html" id="header_contact_page">
+                        Contact
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
     
     <main>
         <div class="container">
-            <h1>About Us</h1>
-            <p class="txt_big">This is the about page content. Replace this with your actual about page content.</p>
+            <h1>About Me</h1>
+            
+            <div id="profile-error" style="display: none;" class="error-message"></div>
+            
+            <section id="profile-section" style="display: none;" class="profile-container">
+                <div class="profile-header">
+                    <div class="profile-image-container">
+                        <img id="user-profile-image" class="profile-image" src="../images/default-profile.jpg" alt="Profile Image">
+                    </div>
+                    <div class="profile-title">
+                        <h2 id="user-name" class="profile-name"></h2>
+                        <p id="user-job" class="profile-job"></p>
+                    </div>
+                </div>
+                
+                <div class="profile-content">
+                    <div class="profile-info">
+                        <div class="info-item">
+                            <i class="fas fa-phone"></i>
+                            <a id="user-phone" href=""></a>
+                        </div>
+                        <div class="info-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span id="user-address"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-bio">
+                        <h3>Biography</h3>
+                        <p id="user-bio"></p>
+                    </div>
+                </div>
+            </section>
         </div>
     </main>
     
-    <footer></footer>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <a href="../Home/home.html">
+                        <h4>Personal</h4>
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h5>Menu</h5>
+                        <ul>
+                            <li><a class="txt" id="footer_about_page" href="../About/about.html">About</a></li>
+                            <li><a class="txt" id="footer_project_page" href="../Projects/projects.html">Projects</a></li>
+                            <li><a class="txt" href="#">Blog</a></li>
+                            <li><a class="txt" id="footer_contact_page" href="../Contact/contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h5>Service</h5>
+                        <ul>
+                            <li><a class="txt" href="#">Design</a></li>
+                            <li><a class="txt" href="#">Development</a></li>
+                            <li><a class="txt" href="#">Marketing</a></li>
+                            <li><a class="txt" href="#">See more</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="social-links">
+                    <a href="#" id="footer_facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" id="footer_twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" id="footer_instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p class="txt">Copyright 2022 Laaqiq. All Rights Reserved.</p>
+                <div class="terms">
+                    <a class="txt" href="#"><p>Terms of Use</p></a>
+                    <a class="txt" href="#"><p>Privacy Policy</p></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="about.js"></script>
 </body>
 </html>
