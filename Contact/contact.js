@@ -16,11 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
             const message = document.getElementById('message').value;
             
             // Create request payload
+            // Get email from the userProfile JSON object stored in localStorage
+            let authorEmail = '';
+            const userProfileData = localStorage.getItem('userProfile');
+            if (userProfileData) {
+                const userProfile = JSON.parse(userProfileData);
+                authorEmail = userProfile.email || '';
+            }
+            
             const requestData = {
-                email: email,
+                authorEmail: authorEmail,
+                emailFrom: email,
                 subject: subject,
                 message: message
             };
+
+            console.log(requestData);
             
             // Show loading state
             const submitButton = contactForm.querySelector('button[type="submit"]');

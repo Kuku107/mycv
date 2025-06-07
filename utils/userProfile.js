@@ -46,6 +46,15 @@ UserProfile.updateUserMenuFromStorage = function() {
         if (homeHeaderAvatar && profileData.profileUrl) {
             homeHeaderAvatar.src = profileData.profileUrl;
         }
+        
+        // Cập nhật tất cả các portfolio links với userId
+        const portfolioLinks = document.querySelectorAll('.portfolio-link');
+        if (portfolioLinks.length > 0 && profileData.userId) {
+            portfolioLinks.forEach(link => {
+                link.href = `../../About/about.html?userId=${profileData.userId}`;
+            });
+            console.log('Updated portfolio links with userId:', profileData.userId);
+        }
     } catch (error) {
         console.error('Error parsing user profile data:', error);
     }
@@ -62,18 +71,21 @@ UserProfile.saveUserProfileToStorage = function(profileData) {
     // Lấy dữ liệu hiện tại trong localStorage
     const currentProfileDataStr = localStorage.getItem('userProfile');
     let currentEmail = '';
+    let currentUserId = '';
     
-    // Nếu đã có profile data, lấy email hiện tại
+    // Nếu đã có profile data, lấy các thông tin hiện tại
     if (currentProfileDataStr) {
         try {
             const currentProfileData = JSON.parse(currentProfileDataStr);
             currentEmail = currentProfileData.email || '';
+            currentUserId = currentProfileData.userId || '';
         } catch (e) {
             console.error('Error parsing current profile data:', e);
         }
     }
     
     const profileToSave = {
+        userId: profileData.userId || currentUserId || '',
         name: profileData.name || '',
         // Sử dụng email mới nếu có, nếu không dùng email hiện tại
         email: profileData.email || currentEmail || '',

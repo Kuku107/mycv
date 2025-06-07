@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (profileData && profileData.data) {
                 // Lưu profile data vào localStorage cho các trang sử dụng
                 const profileToSave = {
+                    userId: profileData.data.userId || '',
                     name: profileData.data.name || '',
                     email: profileData.data.email || '',
                     profileUrl: profileData.data.profileUrl || '',
