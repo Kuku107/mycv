@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', function() {
             if (match && match[1]) {
                 profileData.profileUrl = match[1];
             }
-        } else if (storedProfileUrl && storedProfileUrl.includes('https://storage.googleapis.com/mycvs_live/')) {
+        } else if (storedProfileUrl && storedProfileUrl.includes('https://storage.googleapis.com/mycvs-live/')) {
             // Nếu không có ảnh trong preview nhưng có trong localStorage, cần xóa ảnh cũ
-            const fileName = storedProfileUrl.replace('https://storage.googleapis.com/mycvs_live/', '');
+            const fileName = storedProfileUrl.replace('https://storage.googleapis.com/mycvs-live/', '');
             console.log('Detected image deletion, will delete file:', fileName);
             
             // Đánh dấu để xóa ảnh sau khi lưu profile
@@ -168,13 +168,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         headers: {
                             'Content-Type': file.type
                         },
-                        body: file,
-                        mode: "cors"
+                        body: file
                     });
                     
                     if (upload.ok) {
                         // Set the image URL in profile data với tên file có UUID
-                        profileData.profileUrl = `https://storage.googleapis.com/mycvs_live/${uniqueFileName}`;
+                        profileData.profileUrl = `https://storage.googleapis.com/mycvs-live/${uniqueFileName}`;
                         
                         // Now save the profile
                         saveProfileData(profileData, submitButton, originalButtonText);

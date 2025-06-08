@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         if (upload.ok) {
                             // Set the image URL with UUID in project data
-                            apiData.projectImageUrl = `https://storage.googleapis.com/mycvs_live/${uniqueFileName}`;
+                            apiData.projectImageUrl = `https://storage.googleapis.com/mycvs-live/${uniqueFileName}`;
                             
                             // Now update the project
                             updateProject(apiData, submitBtn, originalBtnText, errorMessageContainer, projectIdToUse);
@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     if (upload.ok) {
                         // Set the image URL in project data
-                        projectData.projectImageUrl = `https://storage.googleapis.com/mycvs_live/${uniqueFileName}`;
+                        projectData.projectImageUrl = `https://storage.googleapis.com/mycvs-live/${uniqueFileName}`;
                         
                         // Now save the project
                         saveProject(projectId, projectData, submitBtn, originalBtnText);
@@ -693,7 +693,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Kiểm tra xem project có ảnh không và ảnh có được lưu trên Google Storage không
             if (existingProject && existingProject.projectImageUrl && 
-                existingProject.projectImageUrl.includes('storage.googleapis.com/mycvs_live/')) {
+                existingProject.projectImageUrl.includes('storage.googleapis.com/mycvs-live/')) {
                 
                 // Extract filename from URL
                 const fileName = existingProject.projectImageUrl.split('/').pop();
