@@ -208,28 +208,58 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to save profile data to API
     function saveProfileData(profileData, submitButton, originalButtonText) {
-        fetchWithTokenRefresh('http://localhost:8080/user/profile', {
+        // In ra ngôn ngữ hiện tại trước khi gửi request
+        console.log('Current language before request:', window.i18n.instance.getCurrentLanguage());
+        console.log('Profile update request data:', profileData);
+        
+        // Custom fetch để debug headers
+        const requestOptions = {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(profileData)
-        })
+        };
+        
+        // In ra tất cả headers trước khi gửi
+        console.log('Request options:', JSON.stringify(requestOptions));
+        
+        // Gửi dữ liệu cập nhật profile với log chi tiết
+        fetchWithTokenRefresh('http://localhost:8080/user/profile', requestOptions)
         .then(response => {
+            // Log response info
+            console.log('Response headers:', response.headers);
+            console.log('Response status:', response.status);
+            console.log('Response ok:', response.ok);
+            
+            // Try to get Accept-Language header from request
+            console.log('Request Accept-Language:', requestOptions.headers['Accept-Language'] || 'Not directly set in options');
+            
+            // Clone the response before consuming it
+            const responseClone = response.clone();
+            
             // Reset button state
             submitButton.disabled = false;
             submitButton.innerHTML = originalButtonText;
             
+            // Extra logging for response body regardless of OK status
+            responseClone.json().then(data => {
+                console.log('Full response body:', data);
+                console.log('Response message:', data.message || 'No message in response');
+                console.log('Response language info:', data.language || 'No language info in response');
+            }).catch(err => console.error('Error parsing response JSON:', err));
+            
             if (!response.ok) {
                 return response.json().then(errorData => {
+                    console.log('Error data from server:', errorData);
                     throw new Error(errorData.message || 'Failed to update profile');
                 });
             }
             return response.json();
         })
         .then(data => {
-            // Show success message
-            errorMessageContainer.textContent = 'Profile updated successfully!';
+            // Show success message using data from backend
+            errorMessageContainer.textContent = data.message || window.i18n.instance.translate('profile_update_success') || 'Profile updated successfully!';
             errorMessageContainer.style.display = 'block';
             errorMessageContainer.style.color = 'green';
             errorMessageContainer.style.backgroundColor = 'rgba(0, 255, 0, 0.05)';
@@ -271,8 +301,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 500);
         })
         .catch(error => {
-            // Display error message
-            errorMessageContainer.textContent = error.message || 'Failed to update profile';
+            // Display error message from backend or fallback to translation
+            errorMessageContainer.textContent = error.message || window.i18n.instance.translate('profile_update_error') || 'Failed to update profile';
             errorMessageContainer.style.display = 'block';
             console.error('Profile update error:', error);
         });

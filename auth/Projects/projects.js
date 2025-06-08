@@ -87,13 +87,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                 ? `<img src="${encodeURI(project.projectImageUrl)}" alt="${project.projectName || 'Project image'}" />` 
                                 : '<i class="fas fa-image"></i>'}
                         </div>
-                        <p class="image-requirements">Image must be PNG or JPEG - max 2MB</p>
+                        <p class="image-requirements" data-i18n="projects_image_requirements">Image must be PNG or JPEG - max 2MB</p>
                         <div class="image-actions">
                             <button type="button" class="btn btn-outline" id="edit-upload-project-image-${projectIdToUse}">
-                                <i class="fas fa-upload"></i> Upload Image
+                                <i class="fas fa-upload"></i> <span data-i18n="projects_upload_image">Upload Image</span>
                             </button>
                             <button type="button" class="btn btn-outline btn-danger" id="edit-delete-project-image-${projectIdToUse}">
-                                <i class="fas fa-trash"></i> Delete Image
+                                <i class="fas fa-trash"></i> <span data-i18n="projects_delete_image">Delete Image</span>
                             </button>
                             <input type="file" id="edit-project-file-input-${projectIdToUse}" accept="image/png, image/jpeg" hidden>
                         </div>
@@ -104,34 +104,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     <input type="hidden" id="edit-project-id-${projectIdToUse}" value="${projectIdToUse}">
                     
                     <div class="form-group">
-                        <label for="edit-project-name-${projectIdToUse}">Project Name <span class="required">*</span></label>
+                        <label for="edit-project-name-${projectIdToUse}" data-i18n="projects_name">Project Name <span class="required">*</span></label>
                         <input type="text" id="edit-project-name-${projectIdToUse}" name="edit-project-name" 
-                            placeholder="Enter your project name" value="${project.projectName || ''}" required>
+                            placeholder="Enter your project name" data-i18n-placeholder="projects_name_placeholder" value="${project.projectName || ''}" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-project-tag-${projectIdToUse}">Tag <span class="required">*</span></label>
+                        <label for="edit-project-tag-${projectIdToUse}" data-i18n="projects_tag">Tag <span class="required">*</span></label>
                         <select id="edit-project-tag-${projectIdToUse}" name="edit-project-tag" required>
                             ${tagOptions}
                         </select>
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-demo-url-${projectIdToUse}">Demo URL</label>
+                        <label for="edit-demo-url-${projectIdToUse}" data-i18n="projects_demo_url">Demo URL</label>
                         <input type="text" id="edit-demo-url-${projectIdToUse}" name="edit-demo-url" 
-                            placeholder="Enter the demo URL" value="${project.projectDemoUrl || ''}">
+                            placeholder="Enter the demo URL" data-i18n-placeholder="projects_demo_placeholder" value="${project.projectDemoUrl || ''}">
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-repository-url-${projectIdToUse}">Repository URL</label>
+                        <label for="edit-repository-url-${projectIdToUse}" data-i18n="projects_repo_url">Repository URL</label>
                         <input type="text" id="edit-repository-url-${projectIdToUse}" name="edit-repository-url" 
-                            placeholder="Enter the repository URL" value="${project.projectRepoUrl || ''}">
+                            placeholder="Enter the repository URL" data-i18n-placeholder="projects_repo_placeholder" value="${project.projectRepoUrl || ''}">
                     </div>
                     
                     <div class="form-group">
-                        <label for="edit-description-${projectIdToUse}">Description</label>
+                        <label for="edit-description-${projectIdToUse}" data-i18n="projects_description">Description</label>
                         <textarea id="edit-description-${projectIdToUse}" name="edit-description" 
-                            placeholder="Enter a short description...">${project.description || ''}</textarea>
+                            placeholder="Enter a short description..." data-i18n-placeholder="projects_description_placeholder">${project.description || ''}</textarea>
                     </div>
                     
                     <!-- Error message container -->
@@ -140,14 +140,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="form-actions">
                         <div class="action-buttons">
                             <button type="button" class="btn btn-outline btn-danger" id="edit-remove-project-${projectIdToUse}">
-                                Remove
+                                <span data-i18n="projects_remove">Remove</span>
                             </button>
                             <div class="primary-actions">
                                 <button type="button" class="btn btn-outline" id="edit-cancel-${projectIdToUse}">
-                                    Cancel
+                                    <span data-i18n="projects_cancel">Cancel</span>
                                 </button>
                                 <button type="button" class="btn btn-primary" id="edit-save-project-${projectIdToUse}">
-                                    <span>Save Changes</span>
+                                    <span data-i18n="projects_save_changes">Save Changes</span>
                                 </button>
                             </div>
                         </div>
@@ -169,6 +169,11 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Style the tag select
         styleTagSelect();
+        
+        // Apply translations to the dynamically created form
+        if (window.i18n && typeof window.i18n.translate === 'function') {
+            window.i18n.translate();
+        }
         
         // Scroll to the edit form
         editFormContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -405,7 +410,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(response => {
             if (!response.ok) {
-                throw new Error('Failed to update project');
+                return response.json().then(errorData => {
+                    throw new Error(errorData.message || 'Failed to update project');
+                });
             }
             return response.json();
         })
@@ -419,7 +426,9 @@ document.addEventListener('DOMContentLoaded', function() {
         .catch(error => {
             console.error('Error updating project:', error);
             if (errorMessageContainer) {
-                errorMessageContainer.textContent = 'Failed to update project. Please try again.';
+                // Use message from backend if available, otherwise use translation or default
+                errorMessageContainer.textContent = error.message || 
+                    (window.i18n?.instance?.translate ? window.i18n.instance.translate('projects_update_error') : 'Failed to update project. Please try again.');
                 errorMessageContainer.style.display = 'block';
             }
         })
@@ -801,22 +810,24 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(error => {
                 console.error('Error loading projects:', error);
                 
-                // Set retry flag
-                isRetrying = true;
+                // Không set retry flag để tránh hiển thị trạng thái retry khi tải lại
+                isRetrying = false;
                 
-                // Show error message
+                // Hiển thị thông báo lỗi không có chế độ tự động thử lại
                 projectsList.innerHTML = `
                     <div class="error-message">
                         <i class="fas fa-exclamation-circle"></i>
-                        Failed to load projects. Retrying in ${RETRY_DELAY/1000} seconds...
+                        Failed to load projects. <button id="manual-retry" class="btn btn-link">Try again</button>
                     </div>
                 `;
                 
-                // Schedule retry after delay
-                retryTimeout = setTimeout(() => {
-                    console.log('Retrying to load projects...');
+                // Thêm sự kiện cho nút retry thủ công
+                document.getElementById('manual-retry')?.addEventListener('click', () => {
+                    console.log('Manually retrying to load projects...');
                     loadProjects();
-                }, RETRY_DELAY);
+                });
+                
+                // Không thiết lập retryTimeout để không tự động thử lại
             });
     }
     
@@ -975,9 +986,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Helper function to generate tag options for select element
     function generateTagOptions(selectedTag) {
-        const tags = ['DESIGN', 'BRANDING', 'ILLUSTRATION', 'MOTION'];
+        const tags = [
+            { value: 'DESIGN', i18nKey: 'projects_design', color: '#4361ee' },
+            { value: 'BRANDING', i18nKey: 'projects_branding', color: '#3a0ca3' },
+            { value: 'ILLUSTRATION', i18nKey: 'projects_illustration', color: '#7209b7' },
+            { value: 'MOTION', i18nKey: 'projects_motion', color: '#f72585' }
+        ];
         return tags.map(tag => 
-            `<option value="${tag}" ${selectedTag === tag ? 'selected' : ''}>${tag}</option>`
+            `<option value="${tag.value}" data-color="${tag.color}" data-i18n="${tag.i18nKey}" ${selectedTag === tag.value ? 'selected' : ''}>${tag.value}</option>`
         ).join('');
     }
     

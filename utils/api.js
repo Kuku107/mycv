@@ -9,15 +9,22 @@
  * @returns {Promise} - Promise that resolves with the API response
  */
 async function fetchWithTokenRefresh(url, options = {}) {
+    // Explicitly add current language to ensure it's included
+    const currentLang = window.i18n?.instance?.getCurrentLanguage ? window.i18n.instance.getCurrentLanguage() : 'en';
+    console.log('fetchWithTokenRefresh - using language:', currentLang);
+    
     // Ensure credentials are included to send cookies
     const fetchOptions = {
         ...options,
         credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
+            'Accept-Language': currentLang, // Explicitly add Accept-Language
             ...options.headers
         }
     };
+    
+    console.log('fetchWithTokenRefresh - final headers:', fetchOptions.headers);
 
     try {
         // Make the initial request

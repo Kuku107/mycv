@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test i18n</title>
+    <link rel="stylesheet" href="includes/common.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="utils/i18n/i18n.css">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .test-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .test-elements {
+            margin-top: 30px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .test-section {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="test-header">
+            <h1>i18n Testing Page</h1>
+            <!-- We'll manually add the language switcher here -->
+            <div class="language-switcher">
+                <button data-lang="en" class="active">EN</button>
+                <span class="language-separator">|</span>
+                <button data-lang="vi">VI</button>
+            </div>
+        </div>
+
+        <div class="test-elements">
+            <div class="test-section">
+                <h2>Header Elements</h2>
+                <ul>
+                    <li><span data-i18n="header_about">About</span></li>
+                    <li><span data-i18n="header_projects">Projects</span></li>
+                    <li><span data-i18n="header_contact">Contact</span></li>
+                </ul>
+            </div>
+
+            <div class="test-section">
+                <h2>Contact Page Elements</h2>
+                <h3 data-i18n="contact_title">Contact</h3>
+                <p data-i18n="contact_description">Agency provides a full service range including technical skills, design, business understanding.</p>
+                <p data-i18n="contact_get_in_touch">Get In Touch</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="utils/i18n/translations.js"></script>
+    <script>
+        // Wait for translations to load
+        setTimeout(() => {
+            // Make sure translations are available
+            if (typeof window.i18n === 'undefined') {
+                window.i18n = {};
+            }
+            if (typeof window.i18n.translations === 'undefined') {
+                console.error('Translations not loaded properly');
+                alert('Error: Translations not loaded properly. Check console for details.');
+            }
+        }, 500);
+    </script>
+    <script src="utils/i18n/i18n.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                console.log('Checking if i18n is loaded:', window.i18n);
+                if (window.i18n && window.i18n.instance) {
+                    // Manually initialize i18n
+                    window.i18n.instance.applyTranslations();
+                    console.log('Translations applied');
+                    
+                    // Add click handlers to language buttons
+                    document.querySelectorAll('.language-switcher button').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const lang = this.getAttribute('data-lang');
+                            console.log('Changing language to:', lang);
+                            window.i18n.instance.changeLanguage(lang);
+                            
+                            // Update active state
+                            document.querySelectorAll('.language-switcher button').forEach(btn => {
+                                btn.classList.remove('active');
+                            });
+                            this.classList.add('active');
+                        });
+                    });
+                } else {
+                    console.error('i18n object not found or not initialized properly');
+                    alert('Error: i18n not initialized properly. Check console for details.');
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

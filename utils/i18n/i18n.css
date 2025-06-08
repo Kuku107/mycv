@@ -1,0 +1,81 @@
+/* i18n.css - Styles for internationalization components */
+
+/* Auth language switcher for auth pages (Home, Projects, Profile) */
+.auth-language-switcher {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 3px 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+    margin: 0 15px;
+    display: flex;
+    align-items: center;
+}
+
+/* Adjust position in auth header */
+.main-header .auth-language-switcher {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+/* Floating language switcher for pages without header navigation */
+.floating-language-switcher {
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    border: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+}
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    padding: 3px 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.language-switcher button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 5px 8px;
+    color: #555;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border-radius: 16px;
+    position: relative;
+    z-index: 1;
+}
+
+.language-switcher button:hover {
+    color: #000;
+    background-color: rgba(0,0,0,0.05);
+}
+
+.language-switcher button.active {
+    color: #fff;
+    background-color: #2d2d2d;
+    font-weight: 700;
+}
+
+.language-separator {
+    color: #ccc;
+    margin: 0 2px;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .language-switcher {
+        margin: 15px auto 0;
+        margin-left: 0;
+        max-width: fit-content;
+        justify-content: center;
+    }
+}

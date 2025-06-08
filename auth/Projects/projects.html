@@ -6,7 +6,11 @@
     <title>Projects Settings - My CV</title>
     <link rel="stylesheet" href="projects.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../../utils/i18n/i18n.css">
     <script src="../../utils/userProfile.js"></script>
+    <script src="../../utils/i18n/translations.js"></script>
+    <script src="../../utils/i18n/i18n.js"></script>
+    <script src="../../utils/i18n/language-switcher.js"></script>
     <script src="projects.js" type="module"></script>
 </head>
 <body>
@@ -67,13 +71,13 @@
     <main class="main-content">
         <div class="settings-container">
             <div class="settings-header">
-                <h1 class="settings-title">Projects settings</h1>
+                <h1 class="settings-title" data-i18n="projects_title">Projects settings</h1>
             </div>
             
             <div class="settings-content">
                 <!-- Add Project Button -->
                 <button class="btn btn-add-project" id="add-project-btn">
-                    <i class="fas fa-plus"></i> Add project
+                    <i class="fas fa-plus"></i> <span data-i18n="projects_add">Add project</span>
                 </button>
                 
                 <!-- Project Form (Hidden by default) -->
@@ -84,13 +88,13 @@
                                 <div class="project-image" id="project-image-preview">
                                     <i class="fas fa-image"></i>
                                 </div>
-                                <p class="image-requirements">Image must be PNG or JPEG - max 2MB</p>
+                                <p class="image-requirements" data-i18n="projects_image_requirements">Image must be PNG or JPEG - max 2MB</p>
                                 <div class="image-actions">
                                     <button type="button" class="btn btn-outline" id="upload-project-image">
-                                        <i class="fas fa-upload"></i> Upload Image
+                                        <i class="fas fa-upload"></i> <span data-i18n="projects_upload_image">Upload Image</span>
                                     </button>
                                     <button type="button" class="btn btn-outline btn-danger" id="delete-project-image">
-                                        <i class="fas fa-trash"></i> Delete Image
+                                        <i class="fas fa-trash"></i> <span data-i18n="projects_delete_image">Delete Image</span>
                                     </button>
                                     <input type="file" id="project-file-input" accept="image/png, image/jpeg" hidden>
                                 </div>
@@ -101,34 +105,34 @@
                         <input type="hidden" id="project-id" value="">
                         
                         <div class="form-group">
-                            <label for="project-name">Project Name <span class="required">*</span></label>
-                            <input type="text" id="project-name" name="project-name" placeholder="Enter your project name" required>
+                            <label for="project-name" data-i18n="projects_name">Project Name <span class="required">*</span></label>
+                            <input type="text" id="project-name" name="project-name" placeholder="Enter your project name" data-i18n-placeholder="projects_name_placeholder" required>
                         </div>
                         
                         <div class="form-group">
-                            <label for="project-tag">Tag <span class="required">*</span></label>
+                            <label for="project-tag" data-i18n="projects_tag">Tag <span class="required">*</span></label>
                             <select id="project-tag" name="project-tag" required>
-                                <option value="" disabled selected>Select a tag</option>
-                                <option value="DESIGN" data-color="#4361ee">Design</option>
-                                <option value="BRANDING" data-color="#3a0ca3">Branding</option>
-                                <option value="ILLUSTRATION" data-color="#7209b7">Illustration</option>
-                                <option value="MOTION" data-color="#f72585">Motion</option>
+                                <option value="" disabled selected data-i18n="projects_select_tag">Select a tag</option>
+                                <option value="DESIGN" data-color="#4361ee" data-i18n="projects_design">Design</option>
+                                <option value="BRANDING" data-color="#3a0ca3" data-i18n="projects_branding">Branding</option>
+                                <option value="ILLUSTRATION" data-color="#7209b7" data-i18n="projects_illustration">Illustration</option>
+                                <option value="MOTION" data-color="#f72585" data-i18n="projects_motion">Motion</option>
                             </select>
                         </div>
                         
                         <div class="form-group">
-                            <label for="demo-url">Demo URL</label>
-                            <input type="text" id="demo-url" name="demo-url" placeholder="Enter the demo URL">
+                            <label for="demo-url" data-i18n="projects_demo_url">Demo URL</label>
+                            <input type="text" id="demo-url" name="demo-url" placeholder="Enter the demo URL" data-i18n-placeholder="projects_demo_placeholder">
                         </div>
                         
                         <div class="form-group">
-                            <label for="repository-url">Repository URL</label>
-                            <input type="text" id="repository-url" name="repository-url" placeholder="Enter the repository URL">
+                            <label for="repository-url" data-i18n="projects_repo_url">Repository URL</label>
+                            <input type="text" id="repository-url" name="repository-url" placeholder="Enter the repository URL" data-i18n-placeholder="projects_repo_placeholder">
                         </div>
                         
                         <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea id="description" name="description" placeholder="Enter a short description..."></textarea>
+                            <label for="description" data-i18n="projects_description">Description</label>
+                            <textarea id="description" name="description" placeholder="Enter a short description..." data-i18n-placeholder="projects_description_placeholder"></textarea>
                         </div>
                         
                         <!-- Error message container -->
@@ -137,14 +141,14 @@
                         <div class="form-actions">
                             <div class="action-buttons">
                                 <button type="button" class="btn btn-outline btn-danger" id="remove-project">
-                                    Remove
+                                    <span data-i18n="projects_remove">Remove</span>
                                 </button>
                                 <div class="primary-actions">
                                     <button type="button" class="btn btn-outline" id="cancel-add-project">
-                                        Cancel
+                                        <span data-i18n="projects_cancel">Cancel</span>
                                     </button>
                                     <button type="submit" class="btn btn-primary">
-                                        <span id="submit-btn-text">Add</span>
+                                        <span id="submit-btn-text" data-i18n="projects_add_btn">Add</span>
                                     </button>
                                 </div>
                             </div>

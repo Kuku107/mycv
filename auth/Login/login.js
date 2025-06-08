@@ -94,7 +94,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 localStorage.setItem('userProfile', JSON.stringify(profileToSave));
             }
             
-            alert('Login successful! Redirecting to home page...');
+            // Use message from backend if available, otherwise use translation or default
+            const successMessage = profileData.message || 
+                (window.i18n?.instance?.translate ? window.i18n.instance.translate('login_success') : 'Login successful! Redirecting to home page...');
+            alert(successMessage);
             window.location.href = '../Home/home.html';
         })
         .catch(error => {

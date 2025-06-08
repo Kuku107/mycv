@@ -1,4 +1,94 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // Apply i18n to Contact page elements
+    function applyContactPageTranslations() {
+        if (!window.i18n || !window.i18n.instance) {
+            // If i18n is not yet available, try again after a short delay
+            setTimeout(applyContactPageTranslations, 100);
+            return;
+        }
+        
+        // Add i18n attributes to page elements
+        // Hero section
+        document.querySelector('#hero h1')?.setAttribute('data-i18n', 'contact_title');
+        const heroDescription = document.querySelector('#hero p.txt');
+        if (heroDescription) {
+            heroDescription.setAttribute('data-i18n', 'contact_description');
+        }
+        
+        // Get in touch form
+        document.querySelector('#git form h4')?.setAttribute('data-i18n', 'contact_get_in_touch');
+        document.querySelector('#email')?.setAttribute('data-i18n', 'contact_email_placeholder');
+        
+        // Form elements - special handling for select options
+        const subjectSelect = document.querySelector('#subject');
+        if (subjectSelect) {
+            subjectSelect.options[0].setAttribute('data-i18n', 'contact_select_subject');
+            subjectSelect.options[1].setAttribute('data-i18n', 'contact_general');
+            subjectSelect.options[2].setAttribute('data-i18n', 'contact_project');
+            subjectSelect.options[3].setAttribute('data-i18n', 'contact_feedback');
+            subjectSelect.options[4].setAttribute('data-i18n', 'contact_freelance');
+            subjectSelect.options[5].setAttribute('data-i18n', 'contact_other');
+        }
+        
+        document.querySelector('#message')?.setAttribute('data-i18n', 'contact_message_placeholder');
+        document.querySelector('#git form button')?.setAttribute('data-i18n', 'contact_submit_now');
+        
+        // Contact info cards
+        const phoneTitle = document.querySelector('.card_item:nth-child(1) .card_title h5');
+        if (phoneTitle) phoneTitle.setAttribute('data-i18n', 'contact_phone');
+        
+        const emailTitle = document.querySelector('.card_item:nth-child(2) .card_title h5');
+        if (emailTitle) emailTitle.setAttribute('data-i18n', 'contact_email');
+        
+        const addressTitle = document.querySelector('.card_item:nth-child(3) .card_title h5');
+        if (addressTitle) addressTitle.setAttribute('data-i18n', 'contact_address');
+        
+        const addressValue = document.querySelector('.card_item:nth-child(3) .txt_big');
+        if (addressValue) addressValue.setAttribute('data-i18n', 'contact_address_value');
+        
+        // FAQ section
+        document.querySelector('#faq h5')?.setAttribute('data-i18n', 'faq_title');
+        document.querySelector('#faq h3')?.setAttribute('data-i18n', 'faq_subtitle');
+        
+        const faqDescription = document.querySelector('#faq .content p.txt:first-of-type');
+        if (faqDescription) faqDescription.setAttribute('data-i18n', 'faq_description');
+        
+        const faqAskUs = document.querySelector('#faq .content p.txt:last-of-type');
+        if (faqAskUs) faqAskUs.setAttribute('data-i18n', 'faq_ask_us');
+        
+        // FAQ questions and answers
+        const q1 = document.querySelector('label[for="question1"] span');
+        if (q1) q1.setAttribute('data-i18n', 'faq_q1');
+        const a1 = document.querySelector('#question1 + label + .question_content p');
+        if (a1) a1.setAttribute('data-i18n', 'faq_a1');
+        
+        const q2 = document.querySelector('label[for="question2"] span');
+        if (q2) q2.setAttribute('data-i18n', 'faq_q2');
+        const a2 = document.querySelector('#question2 + label + .question_content p');
+        if (a2) a2.setAttribute('data-i18n', 'faq_a2');
+        
+        const q3 = document.querySelector('label[for="question3"] span');
+        if (q3) q3.setAttribute('data-i18n', 'faq_q3');
+        const a3 = document.querySelector('#question3 + label + .question_content p');
+        if (a3) a3.setAttribute('data-i18n', 'faq_a3');
+        
+        const q4 = document.querySelector('label[for="question4"] span');
+        if (q4) q4.setAttribute('data-i18n', 'faq_q4');
+        const a4 = document.querySelector('#question4 + label + .question_content p');
+        if (a4) a4.setAttribute('data-i18n', 'faq_a4');
+        
+        // Apply translations
+        window.i18n.instance.applyTranslations();
+    }
+    
+    // Call after a delay to ensure the DOM is fully loaded
+    setTimeout(applyContactPageTranslations, 500);
+    
+    // Setup event listener for language changes to reapply translations
+    document.addEventListener('languageChanged', function() {
+        applyContactPageTranslations();
+    });
+
     const queryString = window.location.search;
 
     const urlParams = new URLSearchParams(queryString);

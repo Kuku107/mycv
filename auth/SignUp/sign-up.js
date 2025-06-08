@@ -80,7 +80,10 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             // Registration successful
             console.log('Registration successful:', data);
-            alert('Registration successful! Redirecting to login page...');
+            // Use message from backend if available, otherwise use translation or default
+            const successMessage = data.message || 
+                (window.i18n?.instance?.translate ? window.i18n.instance.translate('signup_success') : 'Registration successful! Redirecting to login page...');
+            alert(successMessage);
             window.location.href = '../Login/login.html';
         })
         .catch(error => {
