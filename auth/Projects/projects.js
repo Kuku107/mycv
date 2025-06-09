@@ -285,7 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const uniqueFileName = `${generateUUID()}-${file.name}`;
                 
                 // Step 1: Get upload URL với tên file đã có UUID
-                fetchWithTokenRefresh(`http://localhost:8080/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(file.type)}`, {
+                fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(file.type)}`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 removeBtn.disabled = true;
                 
                 // Call API to delete project
-                fetchWithTokenRefresh(`http://localhost:8080/user/project/${projectIdToUse}`, {
+                fetchWithTokenRefresh(`https://mycv-backend.onrender.com/user/project/${projectIdToUse}`, {
                     method: 'DELETE'
                 })
                 .then(response => {
@@ -401,7 +401,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Không xóa ảnh khi cập nhật project - chúng ta chỉ xóa ảnh khi xóa project
         
         // Call API to update project
-        fetchWithTokenRefresh(`http://localhost:8080/user/project`, {
+        fetchWithTokenRefresh(`https://mycv-backend.onrender.com/user/project`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -529,7 +529,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const contentType = file.type;
             
             // Step 1: Get upload URL
-            fetchWithTokenRefresh(`http://localhost:8080/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(contentType)}`, {
+            fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(contentType)}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to save project to API
     function saveProject(projectId, projectData, submitBtn, originalBtnText) {
-        const url = 'http://localhost:8080/user/project';
+        const url = 'https://mycv-backend.onrender.com/user/project';
         const method = projectId ? 'PUT' : 'POST';
         
         // Add projectId to request body if updating
@@ -699,7 +699,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 const fileName = existingProject.projectImageUrl.split('/').pop();
                 
                 // Xóa ảnh trước khi xóa project
-                fetchWithTokenRefresh(`http://localhost:8080/api/images/delete?fileName=${encodeURIComponent(fileName)}`, {
+                fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/images/delete?fileName=${encodeURIComponent(fileName)}`, {
                     method: 'DELETE'
                 })
                 .then(response => {
@@ -724,7 +724,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Hàm xóa project
             function deleteProject() {
-                fetchWithTokenRefresh(`http://localhost:8080/api/projects/${projectId}`, {
+                fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/projects/${projectId}`, {
                     method: 'DELETE'
                 })
                 .then(response => {
@@ -784,7 +784,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Using the correct API endpoint with SHOW_ALL tag
-        fetchWithTokenRefresh(`http://localhost:8080/user/project?pageNo=${currentPage}&pageSize=${pageSize}&tags=SHOW_ALL`)
+        fetchWithTokenRefresh(`https://mycv-backend.onrender.com/user/project?pageNo=${currentPage}&pageSize=${pageSize}&tags=SHOW_ALL`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Failed to load projects');
@@ -1030,7 +1030,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle logout functionality
     document.getElementById('logout').addEventListener('click', function() {
         // Call logout API to clear cookies - sử dụng GET /auth/logout
-        fetchWithTokenRefresh('http://localhost:8080/auth/logout', {
+        fetchWithTokenRefresh('https://mycv-backend.onrender.com/auth/logout', {
             method: 'GET'
         })
         .then(() => {

@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 async function loadUserProfile(userId) {
     try {
-        const response = await fetch(`http://localhost:8080/user/profile?userId=${userId}`);
+        const response = await fetch(`https://mycv-backend.onrender.com/user/profile?userId=${userId}`);
         const data = await response.json();
         
         // Get user data from response

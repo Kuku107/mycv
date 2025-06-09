@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
             submitButton.disabled = true;
             
             // Send POST request to the authentication endpoint
-            fetch('http://localhost:8080/auth/google', {
+            fetch('https://mycv-backend.onrender.com/auth/google', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

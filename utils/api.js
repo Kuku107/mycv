@@ -35,7 +35,7 @@ async function fetchWithTokenRefresh(url, options = {}) {
             console.log('Token expired, attempting to refresh...');
             
             // Try to refresh the token
-            const refreshResponse = await fetch('http://localhost:8080/auth/refresh-token', {
+            const refreshResponse = await fetch('https://mycv-backend.onrender.com/auth/refresh-token', {
                 method: 'POST',
                 credentials: 'include'
             });

@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = '../Login/login.html';
         
         // Gọi API logout ở background mà không cần đợi kết quả
-        fetch('http://localhost:8080/auth/logout', {
+        fetch('https://mycv-backend.onrender.com/auth/logout', {
             method: 'GET',
             credentials: 'include' // Đảm bảo gửi cookies để server xóa session
         }).catch(error => {
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const contentType = file.type;
             
             // Step 1: Get upload URL với tên file đã có UUID
-            fetchWithTokenRefresh(`http://localhost:8080/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(contentType)}`, {
+            fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/images/generate-upload-url?fileName=${encodeURIComponent(uniqueFileName)}&contentType=${encodeURIComponent(contentType)}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Request options:', JSON.stringify(requestOptions));
         
         // Gửi dữ liệu cập nhật profile với log chi tiết
-        fetchWithTokenRefresh('http://localhost:8080/user/profile', requestOptions)
+        fetchWithTokenRefresh('https://mycv-backend.onrender.com/user/profile', requestOptions)
         .then(response => {
             // Log response info
             console.log('Response headers:', response.headers);
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Deleting old image:', fileName);
                 
                 // Gọi API xóa ảnh
-                fetchWithTokenRefresh(`http://localhost:8080/api/images/delete?fileName=${encodeURIComponent(fileName)}`, {
+                fetchWithTokenRefresh(`https://mycv-backend.onrender.com/api/images/delete?fileName=${encodeURIComponent(fileName)}`, {
                     method: 'DELETE'
                 })
                 .then(response => {
@@ -319,7 +319,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading state
         document.body.classList.add('loading');
         
-        fetchWithTokenRefresh('http://localhost:8080/user/profile', {
+        fetchWithTokenRefresh('https://mycv-backend.onrender.com/user/profile', {
             method: 'GET',
             credentials: 'include'
         })
@@ -382,6 +382,15 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('updateUserInfo profileData:', profileData);
         const userName = document.querySelector('.user-name');
         const userEmail = document.querySelector('.user-email');
+
+        // Đảm bảo cập nhật portfolio link với userId
+        const portfolioLinks = document.querySelectorAll('.portfolio-link');
+        if (portfolioLinks.length > 0 && profileData.userId) {
+            portfolioLinks.forEach(link => {
+                link.href = `../../About/about.html?userId=${profileData.userId}`;
+            });
+            console.log('Profile page: Updated portfolio links with userId:', profileData.userId);
+        }
         
         // Cập nhật ảnh đại diện trong profile preview (là thẻ div với background-image)
         const profileImagePreview = document.getElementById('profile-image-preview');

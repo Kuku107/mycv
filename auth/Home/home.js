@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle logout functionality
     document.getElementById('logout').addEventListener('click', function() {
         // Call logout API to clear cookies - sử dụng GET /auth/logout
-        fetch('http://localhost:8080/auth/logout', {
+        fetch('https://mycv-backend.onrender.com/auth/logout', {
             method: 'GET',
             credentials: 'include'
         })

@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.textContent = 'Signing up...';
         
         // Call the API to register the user
-        fetch('http://localhost:8080/user/create', {
+        fetch('https://mycv-backend.onrender.com/user/create', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

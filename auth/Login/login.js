@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitButton.textContent = 'Logging in...';
         
         // Call the API to login the user
-        fetch('http://localhost:8080/auth/get-token', {
+        fetch('https://mycv-backend.onrender.com/auth/get-token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // No need to store tokens as they're in cookies now
             
             // Fetch user profile after successful login
-            return fetchWithTokenRefresh('http://localhost:8080/user/profile', {
+            return fetchWithTokenRefresh('https://mycv-backend.onrender.com/user/profile', {
                 method: 'GET',
                 credentials: 'include'
             });

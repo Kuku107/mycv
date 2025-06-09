@@ -208,7 +208,7 @@ async function loadUserProjects(userId, pageNo = 0) {
         const tagsParam = selectedTags.join(',');
         
         // Gọi API với tham số phân trang và tags
-        const response = await fetch(`http://localhost:8080/user/project?userId=${userId}&pageNo=${pageNo}&pageSize=${pageSize}&tags=${tagsParam}`);
+        const response = await fetch(`https://mycv-backend.onrender.com/user/project?userId=${userId}&pageNo=${pageNo}&pageSize=${pageSize}&tags=${tagsParam}`);
         const data = await response.json();
         console.log('Portfolio data:', data);
         
