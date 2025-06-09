@@ -446,6 +446,13 @@ class I18n {
             // IMPORTANT: Always get current language directly from the i18n instance
             const currentLang = window.i18n.instance.getCurrentLanguage();
             
+            // REDIRECT: Replace localhost:8080 with deployed backend URL
+            if (typeof url === 'string' && url.includes('localhost:8080')) {
+                const newUrl = url.replace('http://localhost:8080', 'https://mycv-backend.onrender.com');
+                console.log(`Redirecting request from ${url} to ${newUrl}`);
+                url = newUrl;
+            }
+            
             // Log for debugging
             console.log(`Fetch request to ${url} with language: ${currentLang}`);
             
